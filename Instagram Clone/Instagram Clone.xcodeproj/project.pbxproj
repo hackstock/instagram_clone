@@ -85,7 +85,6 @@
 				1E3966371E3A08D400988B37 /* Utilities */,
 				1E3966361E3A08C500988B37 /* ViewControllers */,
 				1E3966131E3A068700988B37 /* AppDelegate.swift */,
-				1E3966151E3A068700988B37 /* UIMainViewController.swift */,
 				1E39661D1E3A068800988B37 /* Assets.xcassets */,
 				1E39661F1E3A068800988B37 /* LaunchScreen.storyboard */,
 				1E3966221E3A068800988B37 /* Info.plist */,
@@ -106,6 +105,7 @@
 		1E3966361E3A08C500988B37 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1E3966151E3A068700988B37 /* UIMainViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
