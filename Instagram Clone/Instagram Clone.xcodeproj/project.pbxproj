@@ -16,6 +16,7 @@
 		1E39663A1E3A094A00988B37 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3966391E3A094A00988B37 /* AppConfig.swift */; };
 		1E39663C1E3A0E5900988B37 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663B1E3A0E5900988B37 /* UIColor.swift */; };
 		1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663D1E3A27F600988B37 /* UILoginViewController.swift */; };
+		1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		1E3966391E3A094A00988B37 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		1E39663B1E3A0E5900988B37 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		1E39663D1E3A27F600988B37 /* UILoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILoginViewController.swift; sourceTree = "<group>"; };
+		1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				1E3966151E3A068700988B37 /* UIMainViewController.swift */,
 				1E39663D1E3A27F600988B37 /* UILoginViewController.swift */,
+				1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				1E3966161E3A068700988B37 /* UIMainViewController.swift in Sources */,
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
 				1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */,
+				1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */,
 				1E39663C1E3A0E5900988B37 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@ import UIKit
 class UILoginViewController: UIViewController, UIWebViewDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
+    var hasFinishedAuthorization = false
     
     let webView: UIWebView = {
         let webView = UIWebView()
@@ -55,12 +56,12 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        var urlString = request.url?.absoluteString
+        let urlString = request.url?.absoluteString
         var urlComponents = urlString?.components(separatedBy: "#")
         if (urlComponents?.count)! > 1{
+            self.hasFinishedAuthorization = true
             let accessToken = urlComponents?[1].components(separatedBy: "=")[1]
             AppConfig.storeAccessToken(token: accessToken!)
-            return false
         }
         
         
@@ -76,11 +77,13 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
+        
+        if(self.hasFinishedAuthorization){
+            self.present(UIDashboardViewController(), animated: true, completion: nil)
+        }
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
