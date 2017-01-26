@@ -21,7 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         
-        let rootViewController = UIMainViewController()
+        var rootViewController: UIViewController!
+        
+        if AppConfig.getAccessToken() != nil{
+            rootViewController = UIDashboardViewController()
+        }else{
+            rootViewController = UIMainViewController()
+        }
+        
         self.window?.rootViewController = rootViewController
         
         return true
