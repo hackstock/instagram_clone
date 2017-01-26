@@ -16,14 +16,14 @@ class AppConfig{
         case SANDBOX
         case PRODUCTION
         
-        func getEnvironmentConfiguration() -> (clientID: String, clientSecret: String){
-            var configuration = ("","")
+        func getEnvironmentConfiguration() -> (clientID: String, clientSecret: String, redirectUrl: String){
+            var configuration = ("","","")
             
             switch self {
             case .SANDBOX:
-                configuration = ("a8cb1757cdb0408086804f078c7a2d30","")
+                configuration = ("a8cb1757cdb0408086804f078c7a2d30","519315f81aa44584a05f78bdbe1d391b","http://edwardpie.herokuapp.com/")
             case .PRODUCTION:
-                configuration = ("","")
+                configuration = ("","","")
             }
             
             return configuration
