@@ -13,6 +13,7 @@
 		1E39661E1E3A068800988B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E39661D1E3A068800988B37 /* Assets.xcassets */; };
 		1E3966211E3A068800988B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E39661F1E3A068800988B37 /* LaunchScreen.storyboard */; };
 		1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39662B1E3A068800988B37 /* Instagram_CloneTests.swift */; };
+		1E39663A1E3A094A00988B37 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3966391E3A094A00988B37 /* AppConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		1E3966271E3A068800988B37 /* Instagram CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Instagram CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E39662B1E3A068800988B37 /* Instagram_CloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instagram_CloneTests.swift; sourceTree = "<group>"; };
 		1E39662D1E3A068800988B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E3966391E3A094A00988B37 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,9 @@
 		1E3966121E3A068700988B37 /* Instagram Clone */ = {
 			isa = PBXGroup;
 			children = (
+				1E3966381E3A08DE00988B37 /* Extensions */,
+				1E3966371E3A08D400988B37 /* Utilities */,
+				1E3966361E3A08C500988B37 /* ViewControllers */,
 				1E3966131E3A068700988B37 /* AppDelegate.swift */,
 				1E3966151E3A068700988B37 /* UIMainViewController.swift */,
 				1E39661D1E3A068800988B37 /* Assets.xcassets */,
@@ -94,6 +99,28 @@
 				1E39662D1E3A068800988B37 /* Info.plist */,
 			);
 			path = "Instagram CloneTests";
+			sourceTree = "<group>";
+		};
+		1E3966361E3A08C500988B37 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1E3966371E3A08D400988B37 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1E3966391E3A094A00988B37 /* AppConfig.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		1E3966381E3A08DE00988B37 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E39661C1E3A068800988B37 /* Instagram_Clone.xcdatamodeld in Sources */,
+				1E39663A1E3A094A00988B37 /* AppConfig.swift in Sources */,
 				1E3966161E3A068700988B37 /* UIMainViewController.swift in Sources */,
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
 			);
