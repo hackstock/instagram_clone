@@ -54,12 +54,19 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
         self.webView.loadRequest(URLRequest(url: URL(string: authenticationUrl)!))
     }
     
-    /*func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var urlString = request.url?.absoluteString
         print("URL STRING : \(urlString)")
+        var urlComponents = urlString?.components(separatedBy: "#")
+        if (urlComponents?.count)! > 1{
+            let accessToken = urlComponents?[1].components(separatedBy: "=")[1]
+            print("REAL ACCESS TOKEN : \(accessToken)")
+            return false
+        }
+        
         
         return true
-    }*/
+    }
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         self.view.addSubview(self.activityIndicator)
@@ -69,10 +76,11 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        UIApplication.shared.endIgnoringInteractionEvents()
+        
     }
 
     override func didReceiveMemoryWarning() {
