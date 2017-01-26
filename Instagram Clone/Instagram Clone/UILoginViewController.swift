@@ -10,6 +10,8 @@ import UIKit
 
 class UILoginViewController: UIViewController, UIWebViewDelegate {
     
+    var activityIndicator: UIActivityIndicatorView!
+    
     let webView: UIWebView = {
         let webView = UIWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,10 +29,16 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
     
     func initializeViews(){
         self.webView.delegate = self
+        
+        self.activityIndicator = UIActivityIndicatorView()
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = .gray
     }
     
     func applyLayoutConstraints(){
         self.view.addSubview(self.webView)
+        
         
         self.webView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
@@ -46,23 +54,25 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
         self.webView.loadRequest(URLRequest(url: URL(string: authenticationUrl)!))
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    /*func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var urlString = request.url?.absoluteString
         print("URL STRING : \(urlString)")
         
         return true
-    }
+    }*/
     
     func webViewDidStartLoad(_ webView: UIWebView) {
-        
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        
+        self.activityIndicator.stopAnimating()
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
 
     override func didReceiveMemoryWarning() {
