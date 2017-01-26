@@ -8,9 +8,18 @@
 
 import Foundation
 class AppConfig{
+    
+    static let ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
+    
     static let TargetApiEnvironment = InstagramEnvironment.SANDBOX
-    static let baseUrl = ""
-    static let redirectUrl = ""
+    
+    static func storeAccessToken(token: String){
+        UserDefaults.standard.set(token, forKey: AppConfig.ACCESS_TOKEN_KEY)
+    }
+    
+    static func getAccessToken() -> String?{
+        return UserDefaults.standard.value(forKey: AppConfig.ACCESS_TOKEN_KEY) as? String
+    }
     
     enum InstagramEnvironment{
         case SANDBOX
