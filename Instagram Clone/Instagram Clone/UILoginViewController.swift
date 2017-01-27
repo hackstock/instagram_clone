@@ -75,7 +75,7 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
         UIApplication.shared.endIgnoringInteractionEvents()
         
         if(self.hasFinishedAuthorization){
-            self.present(UIDashboardViewController(), animated: true, completion: nil)
+            self.present(UINavigationController(rootViewController: UIDashboardViewController()), animated: true, completion: nil)
         }
     }
     

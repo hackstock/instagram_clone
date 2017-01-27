@@ -17,6 +17,7 @@ class UIImageFeedItemCellView: UITableViewCell {
         return view
     }()
     
+    
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
