@@ -127,6 +127,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! UIImageFeedItemCellView
+        cell.thumbnailImageView.loadImageFromUrl(url: URL(string: "https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-9/15400935_1368433639834737_6363184148018018419_n.jpg?oh=82d7ce878a51262803e73c1b369aa638&oe=59083953")!)
         return cell
     }
     

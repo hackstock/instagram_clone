@@ -31,6 +31,8 @@
 		1EEEC6981E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */; };
 		1EEEC69A1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */; };
 		1EEEC69B1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */; };
+		1EEEC69D1E3B6AAA00B47882 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC69C1E3B6AAA00B47882 /* UIImageView.swift */; };
+		1EEEC69E1E3B6AAA00B47882 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC69C1E3B6AAA00B47882 /* UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,7 @@
 		1EEEC6921E3B598400B47882 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageFeedItemViewCell.swift; sourceTree = "<group>"; };
 		1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVideoFeedItemViewCell.swift; sourceTree = "<group>"; };
+		1EEEC69C1E3B6AAA00B47882 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,7 @@
 			children = (
 				1E39663B1E3A0E5900988B37 /* UIColor.swift */,
 				1EEEC6831E3B2EF300B47882 /* UIView.swift */,
+				1EEEC69C1E3B6AAA00B47882 /* UIImageView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EEEC6971E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */,
+				1EEEC69D1E3B6AAA00B47882 /* UIImageView.swift in Sources */,
 				1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */,
 				1EEEC6901E3B57E900B47882 /* MetaData.swift in Sources */,
 				1E39661C1E3A068800988B37 /* Instagram_Clone.xcdatamodeld in Sources */,
@@ -312,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEEC69E1E3B6AAA00B47882 /* UIImageView.swift in Sources */,
 				1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */,
 				1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
 				1EEEC69B1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */,
