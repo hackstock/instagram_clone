@@ -17,6 +17,7 @@
 		1E39663C1E3A0E5900988B37 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663B1E3A0E5900988B37 /* UIColor.swift */; };
 		1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663D1E3A27F600988B37 /* UILoginViewController.swift */; };
 		1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */; };
+		1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6831E3B2EF300B47882 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		1E39663B1E3A0E5900988B37 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		1E39663D1E3A27F600988B37 /* UILoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILoginViewController.swift; sourceTree = "<group>"; };
 		1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardViewController.swift; sourceTree = "<group>"; };
+		1EEEC6831E3B2EF300B47882 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				1E39663B1E3A0E5900988B37 /* UIColor.swift */,
+				1EEEC6831E3B2EF300B47882 /* UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */,
 				1E39661C1E3A068800988B37 /* Instagram_Clone.xcdatamodeld in Sources */,
 				1E39663A1E3A094A00988B37 /* AppConfig.swift in Sources */,
 				1E3966161E3A068700988B37 /* UIMainViewController.swift in Sources */,
