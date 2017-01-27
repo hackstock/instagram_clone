@@ -89,7 +89,10 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                         return
                     }
                     
-                    print("JSON : \(json)")
+                    let metaDataObject = json["meta"] as? [String: Any]
+                    let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
+                    
+                    print("META : \(metaDataInfo)")
                 }catch{
                     print("ERROR : \(error.localizedDescription)")
                     return
