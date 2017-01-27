@@ -40,11 +40,7 @@ class UILoginViewController: UIViewController, UIWebViewDelegate {
     func applyLayoutConstraints(){
         self.view.addSubview(self.webView)
         
-        
-        self.webView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.webView.anchorToTop(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
     }
     
     func loadInstagramLoginPage(){
