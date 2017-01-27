@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
     
     let feedsTableView: UITableView = {
@@ -16,6 +16,16 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
+    }()
+    
+    let searchViewController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Search here..."
+        searchController.searchBar.sizeToFit()
+        
+        
+        return searchController
     }()
     
     let activityIndicator: UIActivityIndicatorView = {
@@ -40,6 +50,11 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.feedsTableView.delegate = self
         self.feedsTableView.dataSource = self
         
+        self.searchViewController.searchBar.delegate = self
+        self.searchViewController.searchResultsUpdater = self
+        
+        self.feedsTableView.tableHeaderView = self.searchViewController.searchBar
+        
         self.feedsTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellId)
     }
     
@@ -59,6 +74,18 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as UITableViewCell
         return cell
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 
     override func didReceiveMemoryWarning() {
