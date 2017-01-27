@@ -19,6 +19,8 @@
 		1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */; };
 		1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6831E3B2EF300B47882 /* UIView.swift */; };
 		1EEEC6871E3B3ADD00B47882 /* GrandHotel-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1EEEC6861E3B3ADD00B47882 /* GrandHotel-Regular.otf */; };
+		1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */; };
+		1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 		1E39663F1E3A4AEA00988B37 /* UIDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDashboardViewController.swift; sourceTree = "<group>"; };
 		1EEEC6831E3B2EF300B47882 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		1EEEC6861E3B3ADD00B47882 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
+		1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 		1E3966121E3A068700988B37 /* Instagram Clone */ = {
 			isa = PBXGroup;
 			children = (
+				1EEEC6881E3B4D2600B47882 /* Models */,
 				1EEEC6851E3B3ACB00B47882 /* Fonts */,
 				1E3966381E3A08DE00988B37 /* Extensions */,
 				1E3966371E3A08D400988B37 /* Utilities */,
@@ -144,6 +148,14 @@
 				1EEEC6861E3B3ADD00B47882 /* GrandHotel-Regular.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1EEEC6881E3B4D2600B47882 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +270,7 @@
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
 				1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */,
 				1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */,
+				1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
 				1E39663C1E3A0E5900988B37 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */,
+				1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

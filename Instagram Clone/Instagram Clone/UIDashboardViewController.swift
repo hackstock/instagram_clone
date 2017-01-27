@@ -85,7 +85,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             let dataTask = self.sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 self.stopActivityIndicator()
                 do{
-                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject] else{
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] else{
                         return
                     }
                     
