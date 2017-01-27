@@ -15,6 +15,7 @@ extension UIImageView{
         let queue = DispatchQueue(label: url.absoluteString, qos: .userInteractive)
         queue.async {
             let request = URLRequest(url: url)
+            
             let task = sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 if let imageData = data{
                     DispatchQueue.main.async {

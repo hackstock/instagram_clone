@@ -10,6 +10,13 @@ import UIKit
 
 class UIImageFeedItemCellView: UITableViewCell {
     
+    let profileInfoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        
+        return view
+    }()
+    
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -18,10 +25,17 @@ class UIImageFeedItemCellView: UITableViewCell {
         return imageView
     }()
     
+    
+    
     func initializeViews(){
+        self.addSubview(self.profileInfoView)
         self.addSubview(self.thumbnailImageView)
         
-        self.thumbnailImageView.anchorToTop(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        
+        self.profileInfoView.anchorToTop(top: topAnchor, left: leftAnchor, bottom: thumbnailImageView.topAnchor, right: rightAnchor)
+        self.thumbnailImageView.anchorToTop(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        self.thumbnailImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.85).isActive = true
+       
     }
 
     override func awakeFromNib() {
