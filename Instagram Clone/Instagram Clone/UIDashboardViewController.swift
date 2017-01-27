@@ -11,6 +11,7 @@ import UIKit
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
     let sharedSession = URLSession.shared
+    var feedItems = [FeedItem]()
     
     let feedsTableView: UITableView = {
         let tableView = UITableView()
@@ -52,12 +53,13 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.feedsTableView.delegate = self
         self.feedsTableView.dataSource = self
         
+        
         self.searchViewController.searchBar.delegate = self
         self.searchViewController.searchResultsUpdater = self
         
         self.feedsTableView.tableHeaderView = self.searchViewController.searchBar
         
-        self.feedsTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellId)
+        self.feedsTableView.register(UIImageFeedItemCellView.self, forCellReuseIdentifier: self.cellId)
     }
     
     func applyLayoutConstraints(){
@@ -95,13 +97,15 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
                     let paginationInfo = PaginationInfo.fromJson(json: paginationObject!)
-                    var feedItems = [FeedItem]()
+                    
                     
                     for jsonNode in dataObject!{
-                        feedItems.append(FeedItem.fromJson(json: jsonNode as! [String : Any]))
+                        self.feedItems.append(FeedItem.fromJson(json: jsonNode as! [String : Any]))
                     }
                     
-                    print("FEED ITEMS : \(feedItems)")
+                    self.feedsTableView.reloadData()
+                    
+                    print("FEED ITEMS : \(self.feedItems)")
                 }catch{
                     print("ERROR : \(error.localizedDescription)")
                     return
@@ -118,12 +122,20 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.feedItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! UIImageFeedItemCellView
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

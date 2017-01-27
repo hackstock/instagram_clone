@@ -27,6 +27,10 @@
 		1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68F1E3B57E900B47882 /* MetaData.swift */; };
 		1EEEC6931E3B598400B47882 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6921E3B598400B47882 /* FeedItem.swift */; };
 		1EEEC6941E3B598400B47882 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6921E3B598400B47882 /* FeedItem.swift */; };
+		1EEEC6971E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */; };
+		1EEEC6981E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */; };
+		1EEEC69A1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */; };
+		1EEEC69B1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,8 @@
 		1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationInfo.swift; sourceTree = "<group>"; };
 		1EEEC68F1E3B57E900B47882 /* MetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		1EEEC6921E3B598400B47882 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageFeedItemViewCell.swift; sourceTree = "<group>"; };
+		1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVideoFeedItemViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		1E3966121E3A068700988B37 /* Instagram Clone */ = {
 			isa = PBXGroup;
 			children = (
+				1EEEC6951E3B636D00B47882 /* CollectionCellViews */,
 				1EEEC6881E3B4D2600B47882 /* Models */,
 				1EEEC6851E3B3ACB00B47882 /* Fonts */,
 				1E3966381E3A08DE00988B37 /* Extensions */,
@@ -168,6 +175,15 @@
 				1EEEC6921E3B598400B47882 /* FeedItem.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1EEEC6951E3B636D00B47882 /* CollectionCellViews */ = {
+			isa = PBXGroup;
+			children = (
+				1EEEC6961E3B63AF00B47882 /* UIImageFeedItemViewCell.swift */,
+				1EEEC6991E3B63C900B47882 /* UIVideoFeedItemViewCell.swift */,
+			);
+			name = CollectionCellViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEEC6971E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */,
 				1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */,
 				1EEEC6901E3B57E900B47882 /* MetaData.swift in Sources */,
 				1E39661C1E3A068800988B37 /* Instagram_Clone.xcdatamodeld in Sources */,
@@ -283,6 +300,7 @@
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
 				1EEEC68D1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
 				1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */,
+				1EEEC69A1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */,
 				1EEEC6931E3B598400B47882 /* FeedItem.swift in Sources */,
 				1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */,
 				1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
@@ -296,9 +314,11 @@
 			files = (
 				1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */,
 				1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
+				1EEEC69B1E3B63C900B47882 /* UIVideoFeedItemViewCell.swift in Sources */,
 				1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */,
 				1EEEC6941E3B598400B47882 /* FeedItem.swift in Sources */,
 				1EEEC68E1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
+				1EEEC6981E3B63AF00B47882 /* UIImageFeedItemViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
