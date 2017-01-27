@@ -10,6 +10,7 @@ import UIKit
 
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
+    let sharedSession = URLSession.shared
     
     let feedsTableView: UITableView = {
         let tableView = UITableView()
@@ -40,6 +41,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.initializeViews()
         self.applyLayoutConstraints()
+        self.fetchFeedsFromInstagram()
     
     }
     
@@ -61,6 +63,42 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     func applyLayoutConstraints(){
         self.view.addSubview(self.feedsTableView)
         self.feedsTableView.anchorToTop(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+    
+    func showActivityIndicator(){
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopActivityIndicator(){
+        self.activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    func fetchFeedsFromInstagram(){
+        let baseUrl = AppConfig.TargetApiEnvironment.getEnvironmentConfiguration().baseUrl
+        let accessToken = AppConfig.getAccessToken()
+        
+        if let url = URL(string: "\(baseUrl)/users/self/media/recent?access_token=\(accessToken!)"){
+            let request = URLRequest(url: url)
+            let dataTask = self.sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
+                self.stopActivityIndicator()
+                do{
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject] else{
+                        return
+                    }
+                    
+                    print("JSON : \(json)")
+                }catch{
+                    print("ERROR : \(error.localizedDescription)")
+                    return
+                }
+            })
+            
+            dataTask.resume()
+            self.showActivityIndicator()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

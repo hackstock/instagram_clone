@@ -30,7 +30,7 @@ class AppConfig{
             
             switch self {
             case .SANDBOX:
-                configuration = ("https://api.instagram.com/v1/","a8cb1757cdb0408086804f078c7a2d30","519315f81aa44584a05f78bdbe1d391b","http://edwardpie.herokuapp.com/")
+                configuration = ("https://api.instagram.com/v1","a8cb1757cdb0408086804f078c7a2d30","519315f81aa44584a05f78bdbe1d391b","http://edwardpie.herokuapp.com/")
             case .PRODUCTION:
                 configuration = ("","","","")
             }
