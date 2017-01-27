@@ -34,6 +34,8 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initializeViews(){
+        self.title = "Instagram"
+        
         self.activityIndicator.center = self.view.center
         self.feedsTableView.delegate = self
         self.feedsTableView.dataSource = self

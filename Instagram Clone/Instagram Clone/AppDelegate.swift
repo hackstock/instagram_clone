@@ -18,13 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
         
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().barTintColor  = UIColor(hexString: "#055FA1FF")
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName:UIColor.white,
+            NSFontAttributeName: UIFont(name: "GrandHotel-Regular", size: 32.0)!
+        ]
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         
         var rootViewController: UIViewController!
         
         if AppConfig.getAccessToken() != nil{
-            rootViewController = UIDashboardViewController()
+            rootViewController = UINavigationController(rootViewController: UIDashboardViewController())
         }else{
             rootViewController = UIMainViewController()
         }
