@@ -21,6 +21,10 @@
 		1EEEC6871E3B3ADD00B47882 /* GrandHotel-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1EEEC6861E3B3ADD00B47882 /* GrandHotel-Regular.otf */; };
 		1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */; };
 		1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */; };
+		1EEEC68D1E3B57B400B47882 /* PaginationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */; };
+		1EEEC68E1E3B57B400B47882 /* PaginationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */; };
+		1EEEC6901E3B57E900B47882 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68F1E3B57E900B47882 /* MetaData.swift */; };
+		1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68F1E3B57E900B47882 /* MetaData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,8 @@
 		1EEEC6831E3B2EF300B47882 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		1EEEC6861E3B3ADD00B47882 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
 		1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramResponse.swift; sourceTree = "<group>"; };
+		1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationInfo.swift; sourceTree = "<group>"; };
+		1EEEC68F1E3B57E900B47882 /* MetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */,
+				1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */,
+				1EEEC68F1E3B57E900B47882 /* MetaData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -264,10 +272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EEEC6841E3B2EF300B47882 /* UIView.swift in Sources */,
+				1EEEC6901E3B57E900B47882 /* MetaData.swift in Sources */,
 				1E39661C1E3A068800988B37 /* Instagram_Clone.xcdatamodeld in Sources */,
 				1E39663A1E3A094A00988B37 /* AppConfig.swift in Sources */,
 				1E3966161E3A068700988B37 /* UIMainViewController.swift in Sources */,
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
+				1EEEC68D1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
 				1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */,
 				1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */,
 				1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
@@ -281,6 +291,8 @@
 			files = (
 				1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */,
 				1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
+				1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */,
+				1EEEC68E1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

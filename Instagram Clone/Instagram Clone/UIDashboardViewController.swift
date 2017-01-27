@@ -90,9 +90,12 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     
                     let metaDataObject = json["meta"] as? [String: Any]
-                    let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
+                    let paginationObject = json["pagination"] as? [String: Any]
                     
-                    print("META : \(metaDataInfo)")
+                    let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
+                    let paginationInfo = PaginationInfo.fromJson(json: paginationObject!)
+                    
+                    print("PAGINATION : \(paginationInfo)")
                 }catch{
                     print("ERROR : \(error.localizedDescription)")
                     return
