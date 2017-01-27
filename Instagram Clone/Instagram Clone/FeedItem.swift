@@ -57,8 +57,17 @@ struct FeedItem {
             caption = ""
         }
         
-        let thumbnailUrl = "https://scontent.cdninstagram.com/t51.2885-15/e15/16230801_1644932699134323_6205617681270308864_n.jpg?ig_cache_key=MTQzNjg3NDM3NTEyMjc3Mjg1NA%3D%3D.2"
-        let mediaUrl = "https://scontent.cdninstagram.com/t51.2885-15/e15/16230801_1644932699134323_6205617681270308864_n.jpg?ig_cache_key=MTQzNjg3NDM3NTEyMjc3Mjg1NA%3D%3D.2"
+        var thumbnailUrl = ""
+        if json["images"] != nil{
+            let imagesJsonNode = json["images"] as? [String: Any]
+            let standardResolutionNode = imagesJsonNode?["standard_resolution"] as? [String: Any]
+            thumbnailUrl = (standardResolutionNode?["url"] as? String)!
+        }else{
+            thumbnailUrl = ""
+        }
+        
+        let mediaUrl = ""
+        
         
         var user: User? = nil
         if json["user"] != nil{

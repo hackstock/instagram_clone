@@ -14,7 +14,6 @@ class UIImageFeedItemCellView: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "demo")
         
         return imageView
     }()
