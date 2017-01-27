@@ -91,11 +91,17 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     let metaDataObject = json["meta"] as? [String: Any]
                     let paginationObject = json["pagination"] as? [String: Any]
+                    let dataObject = json["data"] as? [Any]
                     
                     let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
                     let paginationInfo = PaginationInfo.fromJson(json: paginationObject!)
+                    var feedItems = [FeedItem]()
                     
-                    print("PAGINATION : \(paginationInfo)")
+                    for jsonNode in dataObject!{
+                        feedItems.append(FeedItem.fromJson(json: jsonNode as! [String : Any]))
+                    }
+                    
+                    print("FEED ITEMS : \(feedItems)")
                 }catch{
                     print("ERROR : \(error.localizedDescription)")
                     return
