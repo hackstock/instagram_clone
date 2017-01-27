@@ -25,6 +25,8 @@
 		1EEEC68E1E3B57B400B47882 /* PaginationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */; };
 		1EEEC6901E3B57E900B47882 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68F1E3B57E900B47882 /* MetaData.swift */; };
 		1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC68F1E3B57E900B47882 /* MetaData.swift */; };
+		1EEEC6931E3B598400B47882 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6921E3B598400B47882 /* FeedItem.swift */; };
+		1EEEC6941E3B598400B47882 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC6921E3B598400B47882 /* FeedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramResponse.swift; sourceTree = "<group>"; };
 		1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationInfo.swift; sourceTree = "<group>"; };
 		1EEEC68F1E3B57E900B47882 /* MetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
+		1EEEC6921E3B598400B47882 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,7 @@
 				1EEEC6891E3B4D9300B47882 /* InstagramResponse.swift */,
 				1EEEC68C1E3B57B400B47882 /* PaginationInfo.swift */,
 				1EEEC68F1E3B57E900B47882 /* MetaData.swift */,
+				1EEEC6921E3B598400B47882 /* FeedItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -279,6 +283,7 @@
 				1E3966141E3A068700988B37 /* AppDelegate.swift in Sources */,
 				1EEEC68D1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
 				1E39663E1E3A27F600988B37 /* UILoginViewController.swift in Sources */,
+				1EEEC6931E3B598400B47882 /* FeedItem.swift in Sources */,
 				1E3966401E3A4AEA00988B37 /* UIDashboardViewController.swift in Sources */,
 				1EEEC68A1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
 				1E39663C1E3A0E5900988B37 /* UIColor.swift in Sources */,
@@ -292,6 +297,7 @@
 				1E39662C1E3A068800988B37 /* Instagram_CloneTests.swift in Sources */,
 				1EEEC68B1E3B4D9300B47882 /* InstagramResponse.swift in Sources */,
 				1EEEC6911E3B57E900B47882 /* MetaData.swift in Sources */,
+				1EEEC6941E3B598400B47882 /* FeedItem.swift in Sources */,
 				1EEEC68E1E3B57B400B47882 /* PaginationInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
