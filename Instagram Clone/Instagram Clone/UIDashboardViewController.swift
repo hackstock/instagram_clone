@@ -46,12 +46,23 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.initializeViews()
         self.applyLayoutConstraints()
-//        self.fetchFeedsFromInstagram()
-        
-        if self.fetchFeedsFromStorage(){
-            self.feedsTableView.reloadData()
+
+        if AppConfig.hasStoredFeedsOffline() != nil{
+            if self.fetchFeedsFromStorage(){
+                self.feedsTableView.reloadData()
+                
+                let queue = DispatchQueue(label: "com.pie.instagram", qos: .default)
+                queue.asyncAfter(deadline: DispatchTime.now() + .seconds(5), execute: {
+                    self.fetchFeedsFromInstagram()
+                })
+                
+            }else{
+                self.fetchFeedsFromInstagram()
+            }
+        }else{
+            self.fetchFeedsFromInstagram()
         }
-    
+        
     }
     
     func initializeViews(){
@@ -87,6 +98,9 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchFeedsFromInstagram(){
+        
+        self.deleteStoredFeedItems()
+        
         let baseUrl = AppConfig.TargetApiEnvironment.getEnvironmentConfiguration().baseUrl
         let accessToken = AppConfig.getAccessToken()
         
@@ -111,17 +125,21 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                         
                     }
                     
-                    self.feedsTableView.reloadData()
+                    AppConfig.setHasStoredFeedsOffline(status: true)
                     
-                    print("FEED ITEMS : \(self.feedItems)")
+                    DispatchQueue.main.sync {
+                        self.feedsTableView.reloadData()
+                    }
+
                 }catch{
-                    print("ERROR : \(error.localizedDescription)")
+                    AppConfig.setHasStoredFeedsOffline(status: false)
                     return
                 }
             })
             
-            dataTask.resume()
             self.showActivityIndicator()
+            dataTask.resume()
+            
         }
     }
     
@@ -137,13 +155,16 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             try self.feedItems = managedContext.fetch(fetchRequest)
             return true
         }catch let error as NSError{
+            print("ERROR FETCHING FEEDS : \(error.localizedDescription)")
             return false
         }
     }
     
-    func deleteStoredFeedItems() -> Bool{
+    func deleteStoredFeedItems(){
+        self.feedItems = []
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
-            return false
+            return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -153,9 +174,8 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             try managedContext.execute(batchDeleteRequest)
             
-            return true
         }catch let error as NSError{
-            return false
+            print("ERROR DELETING FEEDS : \(error.localizedDescription)")
         }
     }
     
@@ -184,7 +204,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             try managedContext.save()
             return feedItem
         }catch let error as NSError{
-
+            print("ERROR SAVING FEED : \(error.localizedDescription)")
             return nil
         }
     }
