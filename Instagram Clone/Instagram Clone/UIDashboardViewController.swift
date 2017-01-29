@@ -229,6 +229,25 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         cell.thumbnailImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "thumbnailUrl") as? String)!)!)
         cell.profilePictureImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "userAvatarUrl") as? String)!)!)
         
+        
+        
+        let feedDetailsText = NSMutableAttributedString(string: (feedItem.value(forKey: "username") as? String)!, attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold),
+            NSForegroundColorAttributeName: UIColor(hexString: "#055FA1FF")
+            ])
+        
+        feedDetailsText.append(NSMutableAttributedString(string: "    \((feedItem.value(forKey: "likes") as? Int)!) Likes", attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium),
+            NSForegroundColorAttributeName: UIColor(white: 0.2, alpha: 1)
+            ]))
+        
+        feedDetailsText.append(NSMutableAttributedString(string: "    \((feedItem.value(forKey: "comments") as? Int)!) Comments", attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium),
+            NSForegroundColorAttributeName: UIColor(white: 0.2, alpha: 1)
+            ]))
+        
+        cell.feedDetailsLabel.attributedText = feedDetailsText
+        
         return cell
     }
     
