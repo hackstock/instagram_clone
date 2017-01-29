@@ -34,6 +34,9 @@ extension UIImageView{
             
             let task = sharedSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 if let imageData = data{
+                    
+                    self.saveImageToCache(url: url.absoluteString, data: data!)
+                    
                     DispatchQueue.main.async {
                         self.image = UIImage(data: imageData)
                     }
@@ -42,6 +45,24 @@ extension UIImageView{
             
             task.resume()
         }
+    }
+    
+    func saveImageToCache(url: String, data: Data){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let cachedImageEntity = NSEntityDescription.entity(forEntityName: IMAGE_CACHE_ENTITY_NAME, in: managedContext)
+        let cachedImage = NSManagedObject(entity: cachedImageEntity!, insertInto: managedContext)
+        
+        cachedImage.setValue(url, forKey: "index")
+        cachedImage.setValue(data, forKey: "imageData")
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{}
+        
     }
     
     func loadImageFromCache(url: String) -> UIImage?{
