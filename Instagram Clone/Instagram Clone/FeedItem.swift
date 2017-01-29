@@ -44,7 +44,7 @@ struct FeedItem {
         var comments = 0
         if json["comments"] != nil{
             let commentsJsonNode = json["comments"] as? [String: Any]
-            likes = (commentsJsonNode?["count"] as? Int)!
+            comments = (commentsJsonNode?["count"] as? Int)!
         }else{
             comments = 0
         }

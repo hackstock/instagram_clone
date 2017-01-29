@@ -59,13 +59,6 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             if self.fetchFeedsFromStorage(){
                 self.feedsTableView.reloadData()
                 
-                if isInternetConnectionAvailable(){
-                    let queue = DispatchQueue(label: "com.pie.instagram", qos: .default)
-                    queue.asyncAfter(deadline: DispatchTime.now() + .seconds(5), execute: {
-                        self.fetchFeedsFromInstagram()
-                    })
-                }
-                
             }else{
                 self.fetchFeedsFromInstagram()
             }
@@ -113,8 +106,11 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         
+        let queue = DispatchQueue(label: "", qos: .userInitiated)
+        queue.sync {
+            self.fetchFeedsFromInstagram()
+        }
         
-        self.feedsTableView.reloadData()
         self.refreshControl.endRefreshing()
     }
     
@@ -147,11 +143,8 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     
                     AppConfig.setHasStoredFeedsOffline(status: true)
+                    self.feedsTableView.reloadData()
                     
-                    DispatchQueue.main.sync {
-                        self.feedsTableView.reloadData()
-                    }
-
                 }catch{
                     AppConfig.setHasStoredFeedsOffline(status: false)
                     return
@@ -248,21 +241,28 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         let feedDetailsText = NSMutableAttributedString(string: (feedItem.value(forKey: "username") as? String)!, attributes: [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightBold),
+            NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightBold),
             NSForegroundColorAttributeName: UIColor(hexString: "#055FA1FF")
             ])
         
-        feedDetailsText.append(NSMutableAttributedString(string: "    \((feedItem.value(forKey: "likes") as? Int)!) Likes", attributes: [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium),
+        feedDetailsText.append(NSMutableAttributedString(string: "  \((feedItem.value(forKey: "caption") as? String)!)", attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 12, weight: UIFontWeightMedium),
+            NSForegroundColorAttributeName: UIColor(white: 0.5, alpha: 1)
+            ]))
+        
+        feedDetailsText.append(NSMutableAttributedString(string: "\n\((feedItem.value(forKey: "likes") as? Int)!) Likes", attributes: [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightMedium),
             NSForegroundColorAttributeName: UIColor(white: 0.2, alpha: 1)
             ]))
         
         feedDetailsText.append(NSMutableAttributedString(string: "    \((feedItem.value(forKey: "comments") as? Int)!) Comments", attributes: [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium),
+            NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightMedium),
             NSForegroundColorAttributeName: UIColor(white: 0.2, alpha: 1)
             ]))
         
+        
         cell.feedDetailsLabel.attributedText = feedDetailsText
+        
         
         return cell
     }
