@@ -10,6 +10,7 @@ import Foundation
 class AppConfig{
     
     static let ACCESS_TOKEN_KEY = "ACCESS_TOKEN_KEY"
+    static let HAS_STORED_FEEDS_OFFLINE_KEY = "HAS_STORED_FEEDS_OFFLINE_KEY"
     
     static let TargetApiEnvironment = InstagramEnvironment.SANDBOX
     
@@ -19,6 +20,14 @@ class AppConfig{
     
     static func getAccessToken() -> String?{
         return UserDefaults.standard.value(forKey: AppConfig.ACCESS_TOKEN_KEY) as? String
+    }
+    
+    static func setHasStoredFeedsOffline(status: Bool){
+        UserDefaults.standard.set(status, forKey: AppConfig.HAS_STORED_FEEDS_OFFLINE_KEY)
+    }
+    
+    static func hasStoredFeedsOffline() -> Bool?{
+        return UserDefaults.standard.value(forKey: AppConfig.HAS_STORED_FEEDS_OFFLINE_KEY) as? Bool
     }
     
     enum InstagramEnvironment{
