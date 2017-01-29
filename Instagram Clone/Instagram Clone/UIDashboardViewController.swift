@@ -18,6 +18,13 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     let sharedSession = URLSession.shared
     var feedItems = [NSManagedObject]()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(UIDashboardViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
     let feedsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,10 +79,12 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.title = "Instagram"
         
         self.activityIndicator.center = self.view.center
+        
         self.feedsTableView.delegate = self
         self.feedsTableView.dataSource = self
         self.feedsTableView.separatorStyle = .none
         self.feedsTableView.allowsSelection = false
+        self.feedsTableView.addSubview(self.refreshControl)
         
         
         self.searchViewController.searchBar.delegate = self
@@ -100,6 +109,13 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     func stopActivityIndicator(){
         self.activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        
+        self.feedsTableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     func fetchFeedsFromInstagram(){
