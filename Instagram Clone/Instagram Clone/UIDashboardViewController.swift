@@ -46,7 +46,11 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.initializeViews()
         self.applyLayoutConstraints()
-        self.fetchFeedsFromInstagram()
+//        self.fetchFeedsFromInstagram()
+        
+        if self.fetchFeedsFromStorage(){
+            self.feedsTableView.reloadData()
+        }
     
     }
     
@@ -95,16 +99,16 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
                         return
                     }
                     
-                    let metaDataObject = json["meta"] as? [String: Any]
-                    let paginationObject = json["pagination"] as? [String: Any]
                     let dataObject = json["data"] as? [Any]
                     
-                    let metaDataInfo = ResponseMetaData.fromJson(json: metaDataObject!)
-                    let paginationInfo = PaginationInfo.fromJson(json: paginationObject!)
-                    
+                    var serializedFeedItem: FeedItem!
+                    var savedFeedItem: NSManagedObject!
                     
                     for jsonNode in dataObject!{
-                        self.feedItems.append(FeedItem.fromJson(json: jsonNode as! [String : Any]))
+                        serializedFeedItem = FeedItem.fromJson(json: jsonNode as! [String : Any])
+                        savedFeedItem = self.saveForOfflineAccess(instagramFeed: serializedFeedItem)
+                        self.feedItems.append(savedFeedItem)
+                        
                     }
                     
                     self.feedsTableView.reloadData()
@@ -121,9 +125,9 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func fetchFeedsFromStorage(){
+    func fetchFeedsFromStorage() -> Bool{
         guard let appDelete = UIApplication.shared.delegate as? AppDelegate else{
-            return
+            return false
         }
         
         let managedContext = appDelete.persistentContainer.viewContext
@@ -131,14 +135,33 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         do{
             try self.feedItems = managedContext.fetch(fetchRequest)
+            return true
         }catch let error as NSError{
-            
+            return false
         }
     }
     
-    func saveForOfflineAccess(instagramFeed: FeedItem){
+    func deleteStoredFeedItems() -> Bool{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
-            return
+            return false
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: FEED_ITEMS_ENTITY_NAME)
+        
+        do{
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            try managedContext.execute(batchDeleteRequest)
+            
+            return true
+        }catch let error as NSError{
+            return false
+        }
+    }
+    
+    func saveForOfflineAccess(instagramFeed: FeedItem) -> NSManagedObject?{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+            return nil
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -159,9 +182,10 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         do{
             try managedContext.save()
-            self.feedItems.append(feedItem)
+            return feedItem
         }catch let error as NSError{
-            
+
+            return nil
         }
     }
     
@@ -177,7 +201,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         let feedItem = self.feedItems[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! UIImageFeedItemCellView
-        cell.thumbnailImageView.loadImageFromUrl(url: URL(string: feedItem.thumbnailUrl)!)
+        cell.thumbnailImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "thumbnailUrl") as? String)!)!)
         return cell
     }
     
