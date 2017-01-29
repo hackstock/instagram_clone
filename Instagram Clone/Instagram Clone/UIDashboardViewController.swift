@@ -12,7 +12,7 @@ import CoreData
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
     let FEED_ITEMS_ENTITY_NAME = "FeedItem"
-    let IMAGE_CACHE_ENTITY_NAME = "CachedImage"
+    
     
     let sharedSession = URLSession.shared
     var feedItems = [NSManagedObject]()

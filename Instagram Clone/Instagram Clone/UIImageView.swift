@@ -7,9 +7,25 @@
 //
 import Foundation
 import UIKit
+import CoreData
 
 extension UIImageView{
+    var IMAGE_CACHE_ENTITY_NAME: String{
+        get{
+            return"CachedImage"
+        }
+    }
+    
     func loadImageFromUrl(url: URL){
+        
+        if let image = loadImageFromCache(url: url.absoluteString){
+            DispatchQueue.main.async {
+                self.image = image
+            }
+            return
+        }
+        
+        
         let sharedSession = URLSession.shared
         
         let queue = DispatchQueue(label: url.absoluteString, qos: .userInteractive)
@@ -25,6 +41,27 @@ extension UIImageView{
             })
             
             task.resume()
+        }
+    }
+    
+    func loadImageFromCache(url: String) -> UIImage?{
+        var cachedImages: [NSManagedObject] = []
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+            return nil
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: IMAGE_CACHE_ENTITY_NAME)
+        
+        fetchRequest.predicate = NSPredicate(format: "index == %@", url)
+        
+        do{
+            try cachedImages = managedContext.fetch(fetchRequest)
+            return (cachedImages.count > 0) ? UIImage(data: cachedImages[0].value(forKey: "imageData") as! Data) : nil
+            
+        }catch let error as NSError{
+            return nil
         }
     }
 }
