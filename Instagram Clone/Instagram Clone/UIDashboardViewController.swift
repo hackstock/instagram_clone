@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SystemConfiguration
 
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
@@ -51,10 +52,12 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             if self.fetchFeedsFromStorage(){
                 self.feedsTableView.reloadData()
                 
-                let queue = DispatchQueue(label: "com.pie.instagram", qos: .default)
-                queue.asyncAfter(deadline: DispatchTime.now() + .seconds(5), execute: {
-                    self.fetchFeedsFromInstagram()
-                })
+                if isInternetConnectionAvailable(){
+                    let queue = DispatchQueue(label: "com.pie.instagram", qos: .default)
+                    queue.asyncAfter(deadline: DispatchTime.now() + .seconds(5), execute: {
+                        self.fetchFeedsFromInstagram()
+                    })
+                }
                 
             }else{
                 self.fetchFeedsFromInstagram()
@@ -248,6 +251,31 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func isInternetConnectionAvailable() -> Bool {
+        
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+        
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
     }
     
 
