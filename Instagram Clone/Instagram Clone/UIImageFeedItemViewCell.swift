@@ -8,7 +8,9 @@
 
 import UIKit
 
+
 class UIImageFeedItemCellView: UITableViewCell {
+    
     
     let profileInfoView: UIView = {
         let view = UIView()
@@ -39,6 +41,8 @@ class UIImageFeedItemCellView: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+       
+        
         
         return imageView
     }()
@@ -48,7 +52,6 @@ class UIImageFeedItemCellView: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "icLikeInact")
         
         return imageView
     }()

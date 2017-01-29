@@ -69,7 +69,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initializeViews(){
-        self.title = "Instagram"
+        self.title = "Instagram Clone"
         
         self.activityIndicator.center = self.view.center
         
@@ -238,8 +238,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         cell.thumbnailImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "thumbnailUrl") as? String)!)!)
         cell.profilePictureImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "userAvatarUrl") as? String)!)!)
         
-        
-        
+            
         let feedDetailsText = NSMutableAttributedString(string: (feedItem.value(forKey: "username") as? String)!, attributes: [
             NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightBold),
             NSForegroundColorAttributeName: UIColor(hexString: "#055FA1FF")
@@ -264,6 +263,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         cell.feedDetailsLabel.attributedText = feedDetailsText
         
         
+        
         return cell
     }
     
@@ -274,6 +274,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 400
     }
+    
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
