@@ -225,6 +225,8 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! UIImageFeedItemCellView
         cell.thumbnailImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "thumbnailUrl") as? String)!)!)
+        cell.profilePictureImageView.loadImageFromUrl(url: URL(string: (feedItem.value(forKey: "userAvatarUrl") as? String)!)!)
+        
         return cell
     }
     

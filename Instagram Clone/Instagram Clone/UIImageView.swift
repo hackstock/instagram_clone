@@ -47,6 +47,7 @@ extension UIImageView{
         }
     }
     
+    
     func saveImageToCache(url: String, data: Data){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
             return
