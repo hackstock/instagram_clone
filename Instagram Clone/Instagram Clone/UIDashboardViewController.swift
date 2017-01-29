@@ -74,6 +74,8 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.activityIndicator.center = self.view.center
         self.feedsTableView.delegate = self
         self.feedsTableView.dataSource = self
+        self.feedsTableView.separatorStyle = .none
+        self.feedsTableView.allowsSelection = false
         
         
         self.searchViewController.searchBar.delegate = self
