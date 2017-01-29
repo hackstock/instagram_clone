@@ -13,9 +13,11 @@
         <attribute name="mediaUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userAvatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FeedItem" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="FeedItem" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="CachedImage" positionX="-54" positionY="54" width="128" height="75"/>
     </elements>
 </model>
