@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
+    let FEED_ITEMS_ENTITY_NAME = "FeedItem"
+    let IMAGE_CACHE_ENTITY_NAME = "CachedImage"
+    
     let sharedSession = URLSession.shared
-    var feedItems = [FeedItem]()
+    var feedItems = [NSManagedObject]()
     
     let feedsTableView: UITableView = {
         let tableView = UITableView()
@@ -114,6 +118,50 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
             
             dataTask.resume()
             self.showActivityIndicator()
+        }
+    }
+    
+    func fetchFeedsFromStorage(){
+        guard let appDelete = UIApplication.shared.delegate as? AppDelegate else{
+            return
+        }
+        
+        let managedContext = appDelete.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: FEED_ITEMS_ENTITY_NAME)
+        
+        do{
+            try self.feedItems = managedContext.fetch(fetchRequest)
+        }catch let error as NSError{
+            
+        }
+    }
+    
+    func saveForOfflineAccess(instagramFeed: FeedItem){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let feedItemEntity = NSEntityDescription.entity(forEntityName: FEED_ITEMS_ENTITY_NAME, in: managedContext)
+        let feedItem = NSManagedObject(entity: feedItemEntity!, insertInto: managedContext)
+        
+        feedItem.setValue(instagramFeed.id, forKey: "index")
+        feedItem.setValue(instagramFeed.type, forKey: "type")
+        feedItem.setValue(instagramFeed.isLikedByUser, forKey: "isLikedByUser")
+        feedItem.setValue(instagramFeed.comments, forKey: "comments")
+        feedItem.setValue(instagramFeed.likes, forKey: "likes")
+        feedItem.setValue(instagramFeed.caption, forKey: "caption")
+        feedItem.setValue(instagramFeed.thumbnailUrl, forKey: "thumbnailUrl")
+        feedItem.setValue(instagramFeed.mediaUrl, forKey: "mediaUrl")
+        feedItem.setValue(instagramFeed.user.username, forKey: "username")
+        feedItem.setValue(instagramFeed.user.avatarUrl, forKey: "userAvatarUrl")
+        
+        
+        do{
+            try managedContext.save()
+            self.feedItems.append(feedItem)
+        }catch let error as NSError{
+            
         }
     }
     
