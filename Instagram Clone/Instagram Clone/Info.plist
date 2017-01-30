@@ -41,5 +41,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Instagram clone requires access to your phone’s location to show pictures you uploaded near your current location.</string>
 </dict>
 </plist>

@@ -8,14 +8,18 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import SystemConfiguration
 
 class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , UISearchResultsUpdating, UISearchBarDelegate{
     let cellId = "FEED_CELL_ID"
     let FEED_ITEMS_ENTITY_NAME = "FeedItem"
+    var hasAuthorizedLocationAccess = false
+    var currentLocation: CLLocation!
     
     
     let sharedSession = URLSession.shared
+    let locationManager = CLLocationManager()
     var feedItems = [NSManagedObject]()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -54,6 +58,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.initializeViews()
         self.applyLayoutConstraints()
+//        self.initializeLocationService()
 
         if AppConfig.hasStoredFeedsOffline() != nil{
             if self.fetchFeedsFromStorage(){
@@ -88,9 +93,17 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         self.feedsTableView.register(UIImageFeedItemCellView.self, forCellReuseIdentifier: self.cellId)
     }
     
+    func initializeLocationService(){
+        self.locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.startUpdatingLocation()
+    }
+    
     func applyLayoutConstraints(){
         self.view.addSubview(self.feedsTableView)
         self.feedsTableView.anchorToTop(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        
     }
     
     func showActivityIndicator(){
@@ -120,6 +133,7 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
         
         let baseUrl = AppConfig.TargetApiEnvironment.getEnvironmentConfiguration().baseUrl
         let accessToken = AppConfig.getAccessToken()
+        
         
         if let url = URL(string: "\(baseUrl)/users/self/media/recent?access_token=\(accessToken!)"){
             let request = URLRequest(url: url)
@@ -319,4 +333,23 @@ class UIDashboardViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
 
+}
+
+extension UIDashboardViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse{
+            self.hasAuthorizedLocationAccess = true
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations[locations.count - 1]
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
